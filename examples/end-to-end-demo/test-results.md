@@ -44,4 +44,4 @@ DefectLoop end-to-end demo: all behavior checks passed
 
 ## 尚未验证
 
-当前开发环境没有 AstronClaw CLI 或对应运行时，因此尚未完成 AstronClaw 实机部署与调用测试。该项必须在赛事环境补测后更新 `version.json` 的 `runtime.astronclaw_validation`。
+当前开发环境没有 AstronClaw CLI 或对应运行时，因此尚未完成 AstronClaw 实机部署与调用测试。该项必须在目标运行环境补测后更新 `version.json` 的 `runtime.astronclaw_validation`。

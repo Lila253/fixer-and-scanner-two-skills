@@ -1,16 +1,16 @@
 {
   "project": "DefectLoop",
-  "version": "1.0.0",
-  "release_stage": "competition-initial",
+  "version": "1.0.1",
+  "release_stage": "initial",
   "initialized_at": "2026-07-19",
   "updated_at": "2026-07-19",
   "components": {
     "code-defect-scanner": {
-      "version": "1.0.0",
+      "version": "1.0.1",
       "entry": "code-defect-scanner/SKILL.md"
     },
     "code-defect-fixer": {
-      "version": "1.0.0",
+      "version": "1.0.1",
       "entry": "code-defect-fixer/SKILL.md"
     }
   },

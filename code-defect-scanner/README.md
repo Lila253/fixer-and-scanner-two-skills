@@ -1,8 +1,8 @@
 # Code Defect Scanner
 
-`code-defect-scanner` 是一个只读代码缺陷扫描 Skill，也是讯飞 AI 开发者大赛 Skill 开发方向的参赛作品组成部分。它扫描用户明确授权的代码范围，结合项目已有工具与语义分析，输出带代码证据、严重度和置信度的结构化缺陷报告。
+`code-defect-scanner` 是一个只读代码缺陷扫描 Skill。它扫描用户明确授权的代码范围，结合项目已有工具与语义分析，输出带代码证据、严重度和置信度的结构化缺陷报告。
 
-本项目是竞赛型、辅助决策型 Skill，不是生产级静态分析器，也不能替代编译器、测试、专业安全审计或人工 Code Review。
+本 Skill 是辅助决策工具，不是生产级静态分析器，也不能替代编译器、测试、专业安全审计或人工 Code Review。
 
 ## 核心能力
 
@@ -30,7 +30,7 @@
 3. 将整个 `code-defect-scanner` 目录复制到宿主平台规定的 Skills 目录，或使用平台提供的本地 Skill 导入功能。
 4. 重新加载宿主平台的 Skill 列表，然后使用 `$code-defect-scanner` 显式调用，或使用符合触发描述的自然语言请求。
 
-不同 AI 平台的 Skill 安装路径可能不同，请以目标平台或比赛环境的文档为准。对于 Codex 兼容环境，通常放入 `$CODEX_HOME/skills/`；未设置 `CODEX_HOME` 时通常是用户目录下的 `.codex/skills/`。
+不同 AI 平台的 Skill 安装路径可能不同，请以目标平台文档为准。对于 Codex 兼容环境，通常放入 `$CODEX_HOME/skills/`；未设置 `CODEX_HOME` 时通常是用户目录下的 `.codex/skills/`。
 
 `agents/openai.yaml` 只是可选的 Codex/UI 展示元数据，不是子 Agent，也不会启动额外模型。不支持该文件的平台可以忽略它，核心入口仍是 `SKILL.md`。
 
@@ -97,4 +97,4 @@ code-defect-scanner/
 
 ## 许可
 
-当前目录未附带开源许可证。参赛提交不受技术运行影响；公开分发前建议由作者选择合适的许可证并添加 `LICENSE` 文件。
+当前目录未附带开源许可证。公开分发前建议由作者选择合适的许可证并添加 `LICENSE` 文件。

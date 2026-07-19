@@ -2,9 +2,9 @@
 
 证据驱动的代码缺陷扫描与修复双 Skill 闭环。
 
-DefectLoop 由 `code-defect-scanner` 和 `code-defect-fixer` 两个可独立安装、可串联使用的 Skill 组成，面向讯飞 AI 开发者大赛 Skill 开发方向。它把代码缺陷处理拆分为只读发现、结构化交接、授权修复和修复后复检，既保留安全边界，也形成完整开发工作流。
+DefectLoop 由 `code-defect-scanner` 和 `code-defect-fixer` 两个可独立安装、可串联使用的 Skill 组成。它把代码缺陷处理拆分为只读发现、结构化交接、授权修复和修复后复检，既保留安全边界，也形成完整开发工作流。
 
-当前版本：`1.0.0`，详见 [`version.json`](version.json)。
+当前版本：`1.0.1`，详见 [`version.json`](version.json)。
 
 ## 为什么是双 Skill
 
@@ -30,9 +30,9 @@ flowchart LR
 
 ## 下载安装
 
-### 安装整套作品
+### 安装整套 Skill
 
-下载 [`packages/defectloop-1.0.0.zip`](packages/defectloop-1.0.0.zip)，解压后将两个 Skill 目录分别导入宿主平台：
+下载 [`packages/defectloop-1.0.1.zip`](packages/defectloop-1.0.1.zip)，解压后将两个 Skill 目录分别导入宿主平台：
 
 ```text
 code-defect-scanner/
@@ -44,7 +44,7 @@ code-defect-fixer/
 - [`packages/code-defect-scanner.zip`](packages/code-defect-scanner.zip)
 - [`packages/code-defect-fixer.zip`](packages/code-defect-fixer.zip)
 
-保持每个 Skill 的目录结构完整，核心入口均为各自的 `SKILL.md`。不同平台的导入路径可能不同，请以目标平台或赛事环境文档为准。
+保持每个 Skill 的目录结构完整，核心入口均为各自的 `SKILL.md`。不同平台的导入路径可能不同，请以目标平台文档为准。
 
 `agents/openai.yaml` 是可选的 Codex/UI 元数据，不是子 Agent。不识别该文件的平台可以忽略它。
 
@@ -119,7 +119,7 @@ python examples/end-to-end-demo/test_demo.py
 | 旧报告失效检测 | 通过 |
 | 校验器重复运行 100 次 | 100/100 通过 |
 | ZIP 安装结构 | 通过 |
-| AstronClaw 实机部署 | 待在赛事运行环境验证 |
+| AstronClaw 实机部署 | 待在目标运行环境验证 |
 
 详细结果见 [`examples/end-to-end-demo/test-results.md`](examples/end-to-end-demo/test-results.md)。
 
@@ -144,6 +144,8 @@ python examples/end-to-end-demo/test_demo.py
 
 ## 项目结构
 
+### GitHub 仓库
+
 ```text
 fixer-and-scanner-two-skills/
 ├── README.md
@@ -155,6 +157,19 @@ fixer-and-scanner-two-skills/
 └── .gitignore
 ```
 
+### 整套 ZIP 解压后
+
+`defectloop-1.0.1.zip` 不包含 Git 元数据、独立组件 ZIP 或仓库配置文件，解压结构如下：
+
+```text
+defectloop-1.0.1/
+├── README.md
+├── version.json
+├── code-defect-scanner/
+├── code-defect-fixer/
+└── examples/end-to-end-demo/
+```
+
 ## 当前定位
 
-DefectLoop 是竞赛型、辅助开发型作品，不是无人监督的生产静态分析或自动修复系统。大型仓库、安全关键系统、核心交易、认证授权、并发和数据迁移仍需专业工具与人工复查。
+DefectLoop 是辅助开发型工具，不是无人监督的生产静态分析或自动修复系统。大型仓库、安全关键系统、核心交易、认证授权、并发和数据迁移仍需专业工具与人工复查。
