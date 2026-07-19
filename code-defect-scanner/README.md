@@ -30,9 +30,7 @@
 3. 将整个 `code-defect-scanner` 目录复制到宿主平台规定的 Skills 目录，或使用平台提供的本地 Skill 导入功能。
 4. 重新加载宿主平台的 Skill 列表，然后使用 `$code-defect-scanner` 显式调用，或使用符合触发描述的自然语言请求。
 
-不同 AI 平台的 Skill 安装路径可能不同，请以目标平台文档为准。对于 Codex 兼容环境，通常放入 `$CODEX_HOME/skills/`；未设置 `CODEX_HOME` 时通常是用户目录下的 `.codex/skills/`。
-
-`agents/openai.yaml` 只是可选的 Codex/UI 展示元数据，不是子 Agent，也不会启动额外模型。不支持该文件的平台可以忽略它，核心入口仍是 `SKILL.md`。
+不同 AI 平台的 Skill 安装路径可能不同，请以目标平台文档为准。
 
 ## 依赖
 
@@ -71,13 +69,25 @@ python scripts/validate_report.py defect-report.json --source-root <项目根目
 
 校验器会检查报告版本、字段、连续缺陷 ID、相对路径、证据行号，以及证据代码是否仍与当前源码一致。它不需要 `jsonschema` 或 PyYAML。
 
+## 与修复器配套使用
+
+该skill最好作为一个前置扫描器，然后再交由我的另一个code-defect-fixer的skill去修复代码
+
+```text
+code-defect-scanner（只读扫描）
+    -> defect-report.json
+    -> code-defect-fixer（显式授权后修改）
+    -> code-defect-scanner（修复后复检）
+```
+
+两个 Skill 可以独立安装。没有扫描器时，修复器仍可接收报错堆栈、Review 意见或用户明确定位的问题。
+
 ## 目录结构
 
 ```text
 code-defect-scanner/
 ├── SKILL.md
 ├── README.md
-├── agents/openai.yaml
 ├── references/
 │   ├── defect-pattern-library.md
 │   ├── defect-report-schema.json
@@ -94,7 +104,3 @@ code-defect-scanner/
 - `hypothesis` 只表示待验证假设，不应直接进入自动修复。
 - 没有现有项目工具时，报告不能声称已经完成编译或运行时验证。
 - 本 Skill 不承诺发现所有安全漏洞、并发问题或性能瓶颈。
-
-## 许可
-
-当前目录未附带开源许可证。公开分发前建议由作者选择合适的许可证并添加 `LICENSE` 文件。

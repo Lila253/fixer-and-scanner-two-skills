@@ -31,9 +31,7 @@
 3. 将整个 `code-defect-fixer` 目录复制到宿主平台规定的 Skills 目录，或使用平台提供的本地 Skill 导入功能。
 4. 重新加载宿主平台的 Skill 列表，然后使用 `$code-defect-fixer` 显式调用，或在请求中明确要求修改代码。
 
-不同 AI 平台的 Skill 安装路径可能不同，请以目标平台文档为准。对于 Codex 兼容环境，通常放入 `$CODEX_HOME/skills/`；未设置 `CODEX_HOME` 时通常是用户目录下的 `.codex/skills/`。
-
-`agents/openai.yaml` 只是可选的 Codex/UI 展示元数据，不是子 Agent，也不会启动额外模型。不支持该文件的平台可以忽略它，核心入口仍是 `SKILL.md`。
+不同 AI 平台的 Skill 安装路径可能不同，请以目标平台文档为准。
 
 ## 依赖
 
@@ -74,6 +72,8 @@ python scripts/validate_report.py defect-report.json --source-root <项目根目
 
 ## 与扫描器配套使用
 
+该skill最好基于我的另一个code-defect-scanner的技能配套使用，效果最好
+
 ```text
 code-defect-scanner（只读扫描）
     -> defect-report.json
@@ -89,7 +89,6 @@ code-defect-scanner（只读扫描）
 code-defect-fixer/
 ├── SKILL.md
 ├── README.md
-├── agents/openai.yaml
 ├── references/
 │   ├── defect-pattern-library.md
 │   ├── defect-report-schema.json
@@ -105,7 +104,3 @@ code-defect-fixer/
 - 缺少依赖或测试环境时，只能完成静态和语法级验证。
 - 多文件、公共 API、数据迁移、认证授权、并发或核心业务修改需要用户先确认方案。
 - 本 Skill 不适合无人监督地修改生产系统或直接发布代码。
-
-## 许可
-
-当前目录未附带开源许可证。公开分发前建议由作者选择合适的许可证并添加 `LICENSE` 文件。

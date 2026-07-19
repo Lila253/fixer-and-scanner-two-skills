@@ -46,8 +46,6 @@ code-defect-fixer/
 
 保持每个 Skill 的目录结构完整，核心入口均为各自的 `SKILL.md`。不同平台的导入路径可能不同，请以目标平台文档为准。
 
-`agents/openai.yaml` 是可选的 Codex/UI 元数据，不是子 Agent。不识别该文件的平台可以忽略它。
-
 ## 快速体验
 
 扫描请求：
