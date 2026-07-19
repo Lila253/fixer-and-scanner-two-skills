@@ -11,7 +11,7 @@
 - 区分 `confirmed`、`probable` 和 `hypothesis`，降低模式匹配误报。
 - 输出符合 `schema_version=1.0` 的 JSON 报告和用户可读摘要。
 - 保持只读，不修改源码、配置、测试或依赖文件。
-- 将确认后的缺陷报告交给配套的 `code-defect-fixer`。
+- 将确认后的缺陷报告交给配套的 `defectloop-code-fixer`。
 
 ## 适用场景
 
@@ -71,12 +71,12 @@ python scripts/validate_report.py defect-report.json --source-root <项目根目
 
 ## 与修复器配套使用
 
-该skill最好作为一个前置扫描器，然后再交由我的另一个code-defect-fixer的skill去修复代码
+该 skill 最好作为前置扫描器，再把确认后的缺陷交给 `defectloop-code-fixer` 修复。
 
 ```text
 code-defect-scanner（只读扫描）
     -> defect-report.json
-    -> code-defect-fixer（显式授权后修改）
+    -> defectloop-code-fixer（显式授权后修改）
     -> code-defect-scanner（修复后复检）
 ```
 

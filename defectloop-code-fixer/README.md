@@ -1,6 +1,6 @@
-# Code Defect Fixer
+# DefectLoop Code Fixer
 
-`code-defect-fixer` 是一个基于证据的代码缺陷修复 Skill。它接收缺陷报告、报错堆栈或 Code Review 意见，在用户明确要求修改代码时执行最小范围修复，并报告真实验证结果。
+`defectloop-code-fixer` 是一个基于证据的代码缺陷修复 Skill。它接收缺陷报告、报错堆栈或 Code Review 意见，在用户明确要求修改代码时执行最小范围修复，并报告真实验证结果。
 
 本 Skill 是辅助开发工具，不是无人监督的生产修复系统。高风险代码、核心业务、认证授权、并发和数据迁移仍需要人工复查。
 
@@ -26,10 +26,10 @@
 
 ## 安装
 
-1. 解压 `code-defect-fixer.zip`。
-2. 保持目录结构完整，确保入口位于 `code-defect-fixer/SKILL.md`。
-3. 将整个 `code-defect-fixer` 目录复制到宿主平台规定的 Skills 目录，或使用平台提供的本地 Skill 导入功能。
-4. 重新加载宿主平台的 Skill 列表，然后使用 `$code-defect-fixer` 显式调用，或在请求中明确要求修改代码。
+1. 解压 `defectloop-code-fixer.zip`。
+2. 保持目录结构完整，确保入口位于 `defectloop-code-fixer/SKILL.md`。
+3. 将整个 `defectloop-code-fixer` 目录复制到宿主平台规定的 Skills 目录，或使用平台提供的本地 Skill 导入功能。
+4. 重新加载宿主平台的 Skill 列表，然后使用 `$defectloop-code-fixer` 显式调用，或在请求中明确要求修改代码。
 
 不同 AI 平台的 Skill 安装路径可能不同，请以目标平台文档为准。
 
@@ -49,15 +49,15 @@
 ## 使用示例
 
 ```text
-使用 $code-defect-fixer 根据 defect-report.json 修复 DEF-001，并运行可用测试。
+使用 $defectloop-code-fixer 根据 defect-report.json 修复 DEF-001，并运行可用测试。
 ```
 
 ```text
-使用 $code-defect-fixer 根据下面的报错修改 src/order_service.py，只修改该文件：...
+使用 $defectloop-code-fixer 根据下面的报错修改 src/order_service.py，只修改该文件：...
 ```
 
 ```text
-使用 $code-defect-fixer 落实这些 Code Review 意见，但不要改动未列出的文件。
+使用 $defectloop-code-fixer 落实这些 Code Review 意见，但不要改动未列出的文件。
 ```
 
 ## 输入报告校验
@@ -72,12 +72,12 @@ python scripts/validate_report.py defect-report.json --source-root <项目根目
 
 ## 与扫描器配套使用
 
-该skill最好基于我的另一个code-defect-scanner的技能配套使用，效果最好
+该 skill 最好与 `code-defect-scanner` 配套使用。
 
 ```text
 code-defect-scanner（只读扫描）
     -> defect-report.json
-    -> code-defect-fixer（显式授权后修改）
+    -> defectloop-code-fixer（显式授权后修改）
     -> code-defect-scanner（修复后复检）
 ```
 
@@ -86,7 +86,7 @@ code-defect-scanner（只读扫描）
 ## 目录结构
 
 ```text
-code-defect-fixer/
+defectloop-code-fixer/
 ├── SKILL.md
 ├── README.md
 ├── references/

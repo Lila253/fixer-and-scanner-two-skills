@@ -9,9 +9,9 @@
       "version": "1.0.1",
       "entry": "code-defect-scanner/SKILL.md"
     },
-    "code-defect-fixer": {
+    "defectloop-code-fixer": {
       "version": "1.0.1",
-      "entry": "code-defect-fixer/SKILL.md"
+      "entry": "defectloop-code-fixer/SKILL.md"
     }
   },
   "contracts": {
