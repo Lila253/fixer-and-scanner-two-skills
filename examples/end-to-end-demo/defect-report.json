@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "scan": {
+    "scope": "buggy-code.py",
+    "files_scanned": 1,
+    "coverage": "complete",
+    "skipped": [],
+    "error_hint": null
+  },
+  "findings": [
+    {
+      "id": "DEF-001",
+      "path": "buggy-code.py",
+      "start_line": 3,
+      "end_line": 3,
+      "symbol": "find_name",
+      "kind": "risk",
+      "category": "null-dereference",
+      "status": "probable",
+      "severity": "P2",
+      "confidence": "medium",
+      "description": "查询结果可能为空，但代码直接访问字段。",
+      "impact_assumption": "repo.find 在记录不存在时返回 None。",
+      "evidence": [
+        {"path": "buggy-code.py", "line": 3, "code": "return user[\"name\"]"}
+      ],
+      "suggested_action": "确认接口契约并处理空结果。"
+    },
+    {
+      "id": "DEF-002",
+      "path": "buggy-code.py",
+      "start_line": 7,
+      "end_line": 8,
+      "symbol": "print_items",
+      "kind": "defect",
+      "category": "boundary",
+      "status": "confirmed",
+      "severity": "P2",
+      "confidence": "high",
+      "description": "循环最后一次访问等于列表长度的非法索引。",
+      "impact_assumption": "任意长度的列表都会在最后一次迭代抛出 IndexError。",
+      "evidence": [
+        {"path": "buggy-code.py", "line": 7, "code": "for index in range(len(items) + 1):"},
+        {"path": "buggy-code.py", "line": 8, "code": "print(items[index])"}
+      ],
+      "suggested_action": "修正循环上界并覆盖边界输入。"
+    }
+  ],
+  "tool_results": [
+    {"command": "python -m py_compile buggy-code.py", "status": "passed", "summary": "语法检查通过；语法通过不代表行为正确。"}
+  ]
+}

@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://local.skills.example/code-defect-report.schema.json",
+  "title": "Code Defect Report",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "scan", "findings", "tool_results"],
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "scan": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["scope", "files_scanned", "coverage", "skipped", "error_hint"],
+      "properties": {
+        "scope": {"type": "string", "minLength": 1},
+        "files_scanned": {"type": "integer", "minimum": 0},
+        "coverage": {"enum": ["complete", "partial"]},
+        "skipped": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["path", "reason"],
+            "properties": {
+              "path": {"type": "string", "minLength": 1},
+              "reason": {"type": "string", "minLength": 1}
+            }
+          }
+        },
+        "error_hint": {"type": ["string", "null"]}
+      }
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id", "path", "start_line", "end_line", "symbol", "kind",
+          "category", "status", "severity", "confidence", "description",
+          "impact_assumption", "evidence", "suggested_action"
+        ],
+        "properties": {
+          "id": {"type": "string", "pattern": "^DEF-[0-9]{3}$"},
+          "path": {"type": "string", "minLength": 1},
+          "start_line": {"type": "integer", "minimum": 1},
+          "end_line": {"type": "integer", "minimum": 1},
+          "symbol": {"type": ["string", "null"]},
+          "kind": {"enum": ["defect", "risk", "suggestion"]},
+          "category": {"type": "string", "minLength": 1},
+          "status": {"enum": ["confirmed", "probable", "hypothesis"]},
+          "severity": {"enum": ["P0", "P1", "P2", "P3", null]},
+          "confidence": {"enum": ["high", "medium", "low"]},
+          "description": {"type": "string", "minLength": 1},
+          "impact_assumption": {"type": "string"},
+          "evidence": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["path", "line", "code"],
+              "properties": {
+                "path": {"type": "string", "minLength": 1},
+                "line": {"type": "integer", "minimum": 1},
+                "code": {"type": "string", "minLength": 1}
+              }
+            }
+          },
+          "suggested_action": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "tool_results": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["command", "status", "summary"],
+        "properties": {
+          "command": {"type": "string", "minLength": 1},
+          "status": {"enum": ["passed", "failed", "skipped"]},
+          "summary": {"type": "string", "minLength": 1}
+        }
+      }
+    }
+  }
+}

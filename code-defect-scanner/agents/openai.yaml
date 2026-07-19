@@ -1,0 +1,7 @@
+interface:
+  display_name: "代码缺陷扫描器"
+  short_description: "扫描指定代码范围并输出有证据的结构化缺陷与风险报告"
+  default_prompt: "使用 $code-defect-scanner 扫描当前项目的本次改动，并输出可供修复器使用的缺陷报告。"
+
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,27 @@
+{
+  "project": "DefectLoop",
+  "version": "1.0.0",
+  "release_stage": "competition-initial",
+  "initialized_at": "2026-07-19",
+  "updated_at": "2026-07-19",
+  "components": {
+    "code-defect-scanner": {
+      "version": "1.0.0",
+      "entry": "code-defect-scanner/SKILL.md"
+    },
+    "code-defect-fixer": {
+      "version": "1.0.0",
+      "entry": "code-defect-fixer/SKILL.md"
+    }
+  },
+  "contracts": {
+    "defect_report_schema": "1.0"
+  },
+  "runtime": {
+    "python": ">=3.10",
+    "third_party_python_packages": [],
+    "subagents_required": false,
+    "network_required": false,
+    "astronclaw_validation": "pending-runtime-validation"
+  }
+}

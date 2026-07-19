@@ -1,0 +1,7 @@
+interface:
+  display_name: "代码缺陷修复器"
+  short_description: "按证据最小化修复代码并报告真实可执行验证与回归状态"
+  default_prompt: "使用 $code-defect-fixer 根据这份缺陷报告修复已确认的问题，并运行可用验证。"
+
+policy:
+  allow_implicit_invocation: true
